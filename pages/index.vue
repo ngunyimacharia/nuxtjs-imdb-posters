@@ -42,9 +42,24 @@ export default {
         redirect: 'follow'
       };
 
-      const searchURL = `https://imdb-api.com/en/API/Search/${process.env.NUXT_ENV_IMDB_API_KEY}/${this.searchQuery}`;
+      const requestURL = `https://imdb-api.com/en/API/Search/${process.env.NUXT_ENV_IMDB_API_KEY}/${this.searchQuery}`;
 
-      fetch(searchURL, requestOptions)
+      fetch(requestURL, requestOptions)
+        .then(response => response.json())
+        .then(response => this.getShowDetails(response.results[0]))
+        .catch(error => alert('error', error));
+    },
+    getShowDetails(show){
+      console.log(show);
+
+      const requestOptions ={
+        method: 'GET',
+        redirect: 'follow'
+      };
+
+      const requestURL = `https://imdb-api.com/en/API/Title/${process.env.NUXT_ENV_IMDB_API_KEY}/${show.id}`;
+
+      fetch(requestURL, requestOptions)
         .then(response => response.text())
         .then(results => console.log(results))
         .catch(error => alert('error', error));
