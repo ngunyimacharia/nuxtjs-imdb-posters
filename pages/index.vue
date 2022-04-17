@@ -25,6 +25,7 @@
         </div>
       </form>
     </div>
+    {{show}}
   </div>
 </template>
 
@@ -33,6 +34,7 @@ export default {
   data(){
     return {
       searchQuery: null,
+      show:null
     };
   },
   methods:{
@@ -50,18 +52,18 @@ export default {
         .catch(error => alert('error', error));
     },
     getShowDetails(show){
-      console.log(show);
 
       const requestOptions ={
         method: 'GET',
         redirect: 'follow'
       };
 
-      const requestURL = `https://imdb-api.com/en/API/Title/${process.env.NUXT_ENV_IMDB_API_KEY}/${show.id}`;
+      const requestURL = `https://imdb-api.com/en/API/Title/${process.env.NUXT_ENV_IMDB_API_KEY}/${show.id}/Images,`;
 
       fetch(requestURL, requestOptions)
-        .then(response => response.text())
-        .then(results => console.log(results))
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .then(response => this.show = response)
         .catch(error => alert('error', error));
     }
   }
