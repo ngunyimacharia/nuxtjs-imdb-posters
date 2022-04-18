@@ -91,11 +91,6 @@ export default {
       );
     }
   },
-  watch:{
-    show(val){
-      console.log(val);
-    }
-  },
   methods:{
     search(){
       Array.prototype.random = function () {
