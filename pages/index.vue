@@ -109,7 +109,7 @@ export default {
 
       const queryParams = new URLSearchParams({
           api_key: process.env.NUXT_ENV_TMDB_API_KEY,
-          query: this.searchQuery ?? alphabet[Math.floor(Math.random() * alphabet.length)],
+          query: this.searchQuery ?? [...alphabet].random(),
       });
 
       fetch(requestURL + queryParams, requestOptions)
