@@ -70,14 +70,6 @@ export default {
           height:800,
           crop:"fit",
           transformation: [
-            // {
-            //   color:"#" + Math.floor(Math.random()*16777215).toString(16),
-            //   overlay: {
-            //     font_family: "Times",
-            //     font_size: 90,
-            //     text: this.show.release_date
-            //   }
-            // },
             {
               color:"#" + Math.floor(Math.random()*16777215).toString(16),
               overlay: {
